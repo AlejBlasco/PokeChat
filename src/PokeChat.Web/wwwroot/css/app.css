@@ -1,3 +1,8 @@
+/* ============================================================
+   PokeChat — Pokémon theme override on top of Bootswatch Darkly
+   ============================================================ */
+
+/* --- Pokémon type color palette --- */
 :root {
     --poketype-fire: #F08030;
     --poketype-water: #6890F0;
@@ -17,13 +22,113 @@
     --poketype-ghost: #705898;
     --poketype-steel: #B8B8D0;
     --poketype-fairy: #EE99AC;
+
+    /* --- Pokémon brand overrides --- */
+    --pokemon-red: #CC0000;
+    --pokemon-yellow: #FFCC00;
+    --pokemon-black: #1a1a1a;
+    --pokemon-white: #F8F8F8;
 }
 
+/* --- Base --- */
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     height: 100%;
 }
 
+/* --- Navbar override --- */
+.navbar-pokemon {
+    background-color: var(--pokemon-red);
+    border-bottom: 3px solid var(--pokemon-black);
+}
+
+.navbar-pokemon .navbar-brand {
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: var(--pokemon-white);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.navbar-pokemon .navbar-brand span {
+    color: var(--pokemon-yellow);
+}
+
+.navbar-pokemon .pokeball-icon {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: linear-gradient(180deg, var(--pokemon-white) 50%, var(--pokemon-red) 50%);
+    border: 3px solid var(--pokemon-black);
+    margin-right: 8px;
+    vertical-align: middle;
+    position: relative;
+}
+
+.navbar-pokemon .pokeball-icon::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--pokemon-white);
+    border: 2px solid var(--pokemon-black);
+}
+
+/* --- Page layout --- */
+.page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1;
+    padding-top: 1.5rem;
+}
+
+/* --- Pokemon card --- */
+.pokemon-card {
+    border: 2px solid var(--pokemon-yellow);
+    border-radius: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pokemon-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(255, 204, 0, 0.2);
+}
+
+.pokemon-card .card-header {
+    background-color: var(--pokemon-red);
+    color: var(--pokemon-white);
+    font-weight: 700;
+    border-bottom: 2px solid var(--pokemon-yellow);
+    border-radius: 10px 10px 0 0;
+}
+
+.pokemon-card .pokemon-sprite {
+    width: 120px;
+    height: 120px;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 4px 8px rgba(255, 204, 0, 0.4));
+}
+
+/* --- Type badges --- */
+.badge-poketype {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* --- Blazor error UI --- */
 #blazor-error-ui {
     position: fixed;
     bottom: 0;
