@@ -1,0 +1,33 @@
+:root {
+    --poketype-fire: #F08030;
+    --poketype-water: #6890F0;
+    --poketype-grass: #78C850;
+    --poketype-electric: #F8D030;
+    --poketype-psychic: #F85888;
+    --poketype-ice: #98D8D8;
+    --poketype-dragon: #7038F8;
+    --poketype-dark: #705848;
+    --poketype-normal: #A8A878;
+    --poketype-fighting: #C03028;
+    --poketype-poison: #A040A0;
+    --poketype-ground: #E0C068;
+    --poketype-flying: #A890F0;
+    --poketype-bug: #A8B820;
+    --poketype-rock: #B8A038;
+    --poketype-ghost: #705898;
+    --poketype-steel: #B8B8D0;
+    --poketype-fairy: #EE99AC;
+}
+
+html, body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    height: 100%;
+}
+
+#blazor-error-ui {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+    display: none;
+}
