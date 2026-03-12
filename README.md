@@ -1,5 +1,9 @@
 # PokeChat 🔴⚡
 
+[![CI](https://github.com/AlejBlasco/PokeChat/actions/workflows/ci.yml/badge.svg)](https://github.com/AlejBlasco/PokeChat/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/AlejBlasco/PokeChat/actions/workflows/codeql.yml/badge.svg)](https://github.com/AlejBlasco/PokeChat/actions/workflows/codeql.yml)
+[![Dependency Review](https://github.com/AlejBlasco/PokeChat/actions/workflows/dependency-review.yml/badge.svg)](https://github.com/AlejBlasco/PokeChat/actions/workflows/dependency-review.yml)
+
 An AI-powered Pokémon chat assistant built with Blazor and Microsoft Semantic Kernel.
 
 ## Overview

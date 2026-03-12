@@ -1,0 +1,39 @@
+# Auto detect text files and perform LF normalization
+* text=auto eol=lf
+
+# C# files
+*.cs text eol=lf
+*.csproj text eol=lf
+*.sln text eol=lf
+*.props text eol=lf
+*.targets text eol=lf
+
+# Razor files
+*.razor text eol=lf
+*.cshtml text eol=lf
+
+# Web files
+*.html text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+*.json text eol=lf
+*.xml text eol=lf
+*.config text eol=lf
+
+# Markdown
+*.md text eol=lf
+
+# GitHub Actions
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary

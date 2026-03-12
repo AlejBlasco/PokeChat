@@ -1,0 +1,47 @@
+name: CodeQL
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  schedule:
+    - cron: '0 8 * * 1' # Every Monday at 08:00 UTC
+
+permissions:
+  contents: read
+  security-events: write
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  analyze:
+    name: CodeQL Analysis
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.x'
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: csharp
+          queries: security-and-quality
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build for CodeQL
+        run: dotnet build --no-restore --configuration Release
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: /language:csharp
