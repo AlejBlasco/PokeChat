@@ -1,9 +1,11 @@
-using Microsoft.AspNetCore.Components.Web;
+using PokeChat.Application.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+builder.Services.AddApplicationServices(builder.Configuration);
 
 var app = builder.Build();
 

@@ -20,6 +20,16 @@
     <!-- HTTP -->
     <PackageVersion Include="Microsoft.Extensions.Http" Version="8.0.1" />
 
+    <!-- Cache -->
+    <PackageVersion Include="Microsoft.Extensions.Caching.Memory" Version="8.0.1" />
+
+    <!-- Configuration -->
+    <PackageVersion Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0" />
+
+    <!-- Mapping -->
+    <PackageVersion Include="AutoMapper" Version="13.0.1" />
+
     <!-- Testing -->
     <PackageVersion Include="xunit" Version="2.9.3" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="2.8.2" />
