@@ -128,6 +128,329 @@ html, body {
     letter-spacing: 0.5px;
 }
 
+/* ============================================================
+   ChatBot — Pokémon card themed chat UI
+   ============================================================ */
+
+.chatbot-container {
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+    max-width: 680px;
+    margin: 0 auto;
+    /* identical to pokemon-card */
+    border: 2px solid var(--pokemon-yellow);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background-color: var(--bs-body-bg, #222);
+}
+
+.chatbot-container:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(255, 204, 0, 0.2);
+}
+
+/* Header — identical to pokemon-card .card-header */
+.chatbot-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    background-color: var(--pokemon-red);
+    border-bottom: 2px solid var(--pokemon-yellow);
+    flex-shrink: 0;
+}
+
+.chatbot-header__identity {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.chatbot-header__info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.chatbot-header__name {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--pokemon-white);
+}
+
+.chatbot-header__status {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.72rem;
+    color: rgba(248, 248, 248, 0.8);
+}
+
+.chatbot-header__status-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: #44ff88;
+    box-shadow: 0 0 5px #44ff88;
+    flex-shrink: 0;
+}
+
+.chatbot-header__refresh {
+    background: transparent;
+    border: 1px solid rgba(248, 248, 248, 0.45);
+    color: var(--pokemon-white);
+    font-size: 1rem;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    line-height: 1;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+}
+
+.chatbot-header__refresh:hover {
+    background-color: rgba(248, 248, 248, 0.18);
+}
+
+/* Pokeball avatar — CSS only, zero images */
+.pokeball-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(180deg, var(--pokemon-white) 50%, var(--pokemon-red) 50%);
+    border: 3px solid var(--pokemon-black);
+    position: relative;
+    flex-shrink: 0;
+}
+
+.pokeball-avatar::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: var(--pokemon-black);
+    transform: translateY(-50%);
+}
+
+.pokeball-avatar::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background-color: var(--pokemon-white);
+    border: 3px solid var(--pokemon-black);
+}
+
+.pokeball-avatar--sm {
+    width: 26px;
+    height: 26px;
+}
+
+.pokeball-avatar--sm::before {
+    height: 2px;
+}
+
+.pokeball-avatar--sm::after {
+    width: 8px;
+    height: 8px;
+    border-width: 2px;
+}
+
+/* Messages area */
+.chatbot-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    scroll-behavior: smooth;
+}
+
+.chatbot-messages::-webkit-scrollbar {
+    width: 4px;
+}
+
+.chatbot-messages::-webkit-scrollbar-thumb {
+    background-color: var(--pokemon-yellow);
+    border-radius: 4px;
+}
+
+/* Message rows */
+.chatbot-message {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    max-width: 80%;
+}
+
+.chatbot-message--bot {
+    align-self: flex-start;
+}
+
+.chatbot-message--user {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+}
+
+/* Bubbles */
+.chatbot-message__bubble {
+    padding: 10px 14px;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    word-break: break-word;
+}
+
+.chatbot-message--bot .chatbot-message__bubble {
+    background-color: #2d2d2d;
+    border: 1px solid rgba(255, 204, 0, 0.25);
+    border-bottom-left-radius: 4px;
+}
+
+.chatbot-message--user .chatbot-message__bubble {
+    background-color: var(--pokemon-red);
+    border-bottom-right-radius: 4px;
+}
+
+.chatbot-message__text {
+    margin: 0;
+    font-size: 0.88rem;
+    line-height: 1.45;
+    color: var(--pokemon-white);
+}
+
+.chatbot-message__time {
+    font-size: 0.68rem;
+    color: rgba(248, 248, 248, 0.45);
+    align-self: flex-end;
+}
+
+/* Typing indicator */
+.chatbot-message__bubble--typing {
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    padding: 12px 16px;
+}
+
+.typing-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--pokemon-yellow);
+    animation: typing-bounce 1.2s infinite ease-in-out;
+}
+
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typing-bounce {
+    0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+    40%           { transform: translateY(-6px); opacity: 1; }
+}
+
+/* Quick replies */
+.chatbot-quickreplies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 8px 16px;
+    border-top: 1px solid rgba(255, 204, 0, 0.15);
+    flex-shrink: 0;
+}
+
+.chatbot-quickreplies__btn {
+    background: transparent;
+    border: 1px solid var(--pokemon-yellow);
+    color: var(--pokemon-yellow);
+    border-radius: 20px;
+    font-size: 0.78rem;
+    padding: 4px 12px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.chatbot-quickreplies__btn:hover {
+    background-color: var(--pokemon-yellow);
+    color: var(--pokemon-black);
+}
+
+/* Input area */
+.chatbot-input {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    border-top: 2px solid rgba(255, 204, 0, 0.3);
+    flex-shrink: 0;
+}
+
+.chatbot-input__field {
+    flex: 1;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 204, 0, 0.4);
+    background-color: #1a1a1a;
+    color: var(--pokemon-white);
+    padding: 9px 16px;
+    font-size: 0.88rem;
+}
+
+.chatbot-input__field:focus {
+    border-color: var(--pokemon-yellow);
+    box-shadow: 0 0 0 2px rgba(255, 204, 0, 0.2);
+    background-color: #1a1a1a;
+    color: var(--pokemon-white);
+    outline: none;
+}
+
+.chatbot-input__field::placeholder {
+    color: rgba(248, 248, 248, 0.35);
+}
+
+.chatbot-input__send {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: var(--pokemon-red);
+    border: 2px solid var(--pokemon-yellow);
+    color: var(--pokemon-white);
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.chatbot-input__send:hover:not(:disabled) {
+    background-color: #aa0000;
+    transform: scale(1.07);
+}
+
+.chatbot-input__send:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
 /* --- Blazor error UI --- */
 #blazor-error-ui {
     position: fixed;
