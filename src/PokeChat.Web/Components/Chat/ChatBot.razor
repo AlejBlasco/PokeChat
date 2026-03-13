@@ -1,0 +1,94 @@
+@rendermode InteractiveServer
+@using PokeChat.Web.Components.Chat
+
+<div class="chatbot-container">
+
+    <!-- Header -->
+    <div class="chatbot-header">
+        <div class="chatbot-header__identity">
+            <div class="chatbot-header__avatar">
+                <div class="pokeball-avatar"></div>
+            </div>
+            <div class="chatbot-header__info">
+                <span class="chatbot-header__name">PokéBot</span>
+                <span class="chatbot-header__status">
+                    <span class="chatbot-header__status-dot"></span>
+                    Online
+                </span>
+            </div>
+        </div>
+        <button class="chatbot-header__refresh btn btn-sm"
+                @onclick="ClearConversation"
+                title="Clear conversation"
+                aria-label="Clear conversation">
+            ↺
+        </button>
+    </div>
+
+    <!-- Message history -->
+    <div class="chatbot-messages" @ref="_messagesContainer">
+        @foreach (var message in _messages)
+        {
+            <div class="chatbot-message chatbot-message--@(message.Role == ChatRole.User ? "user" : "bot")"
+                 @key="message.Id">
+                @if (message.Role == ChatRole.Bot)
+                {
+                    <div class="chatbot-message__avatar">
+                        <div class="pokeball-avatar pokeball-avatar--sm"></div>
+                    </div>
+                }
+                <div class="chatbot-message__bubble">
+                    <p class="chatbot-message__text">@message.Content</p>
+                    <span class="chatbot-message__time">@message.Timestamp.ToString("HH:mm")</span>
+                </div>
+            </div>
+        }
+
+        @if (_isTyping)
+        {
+            <div class="chatbot-message chatbot-message--bot">
+                <div class="chatbot-message__avatar">
+                    <div class="pokeball-avatar pokeball-avatar--sm"></div>
+                </div>
+                <div class="chatbot-message__bubble chatbot-message__bubble--typing">
+                    <span class="typing-dot"></span>
+                    <span class="typing-dot"></span>
+                    <span class="typing-dot"></span>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- Quick replies -->
+    @if (_showQuickReplies)
+    {
+        <div class="chatbot-quickreplies">
+            @foreach (var suggestion in _quickReplies)
+            {
+                <button class="chatbot-quickreplies__btn btn btn-sm"
+                        @onclick="() => SendQuickReply(suggestion)">
+                    @suggestion
+                </button>
+            }
+        </div>
+    }
+
+    <!-- Input area -->
+    <div class="chatbot-input">
+        <input class="chatbot-input__field form-control"
+               type="text"
+               placeholder="Ask about Pokémon..."
+               @bind="_userInput"
+               @bind:event="oninput"
+               @onkeydown="HandleKeyDown"
+               disabled="@_isTyping"
+               aria-label="Message input" />
+        <button class="chatbot-input__send btn"
+                @onclick="SendMessageAsync"
+                disabled="@(_isTyping || string.IsNullOrWhiteSpace(_userInput))"
+                aria-label="Send message">
+            ➤
+        </button>
+    </div>
+
+</div>

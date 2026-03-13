@@ -1,26 +1,6 @@
 @page "/"
-@rendermode InteractiveServer
+@using PokeChat.Web.Components.Chat
 
 <PageTitle>PokeChat</PageTitle>
 
-<div class="row justify-content-center mt-4">
-    <div class="col-12 col-md-6 col-lg-4">
-        <div class="card pokemon-card text-center">
-            <div class="card-header">
-                #025 — Pikachu
-            </div>
-            <div class="card-body">
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"
-                     alt="Pikachu"
-                     class="pokemon-sprite mb-3" />
-                <h1 class="h4 fw-bold">Hello, Trainer!</h1>
-                <p class="text-muted">
-                    Welcome to <strong>PokeChat</strong> — your AI-powered Pokémon chat assistant.
-                </p>
-                <span class="badge badge-poketype me-1" style="background-color: var(--poketype-electric); color: #000;">
-                    Electric
-                </span>
-            </div>
-        </div>
-    </div>
-</div>
+<ChatBot />
