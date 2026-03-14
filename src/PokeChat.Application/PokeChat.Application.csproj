@@ -19,4 +19,9 @@
     <ProjectReference Include="..\PokeChat.Domain\PokeChat.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <!-- Allow test project to access internal types (e.g. HttpModels) -->
+    <InternalsVisibleTo Include="PokeChat.ApplicationTests" />
+  </ItemGroup>
+
 </Project>
