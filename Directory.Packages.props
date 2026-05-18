@@ -5,7 +5,7 @@
 
   <ItemGroup>
     <!-- Blazor Server -->
-    <PackageVersion Include="Microsoft.AspNetCore.Components.Web" Version="8.0.25" />
+    <PackageVersion Include="Microsoft.AspNetCore.Components.Web" Version="8.0.27" />
 
     <!-- Validation -->
     <PackageVersion Include="FluentValidation" Version="11.11.0" />
